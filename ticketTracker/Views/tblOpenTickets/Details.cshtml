@@ -1,0 +1,58 @@
+﻿@model ticketTracker.Models.tblOpenTicket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    @*<h4>tblOpenTicket</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            User Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtUserName)
+        </dd>
+
+        <dt>
+            Date Opened
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtmCreated)
+        </dd>
+
+        <dt>
+            Date Resolved
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtmResolved)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.blnResolved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blnResolved)
+        </dd>*@
+
+        <dt>
+            Issue
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtIssue)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idsTicket }) |
+    @Html.ActionLink("Back to Open Tickets", "Index")
+</p>

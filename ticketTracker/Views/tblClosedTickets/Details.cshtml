@@ -1,0 +1,58 @@
+﻿@model ticketTracker.Models.tblClosedTicket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblClosedTicket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dtmResolved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtmResolved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txtUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.blnResolved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blnResolved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txtResolution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtResolution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblOpenTicket.txtUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblOpenTicket.txtUserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idsClosedTicket }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

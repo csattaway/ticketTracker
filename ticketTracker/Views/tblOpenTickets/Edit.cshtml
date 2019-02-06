@@ -1,0 +1,80 @@
+﻿@model ticketTracker.Models.tblOpenTicket
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Open Ticket</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @*<h4>tblOpenTicket</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idsTicket)
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.txtUserName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="control-label col-md-2">User Name</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.txtUserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.txtUserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.dtmCreated, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dtmCreated, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dtmCreated, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.dtmResolved, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dtmResolved, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dtmResolved, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Mark Resolved</div>
+            @*@Html.LabelFor(model => model.blnResolved, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.blnResolved)
+                    @Html.ValidationMessageFor(model => model.blnResolved, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Issue</div>
+
+            @*@Html.LabelFor(model => model.txtIssue, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.txtIssue, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.txtIssue, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Open Tickets", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

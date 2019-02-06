@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ticketTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblClosedTicket">
+          <Key>
+            <PropertyRef Name="idsClosedTicket" />
+          </Key>
+          <Property Name="idsClosedTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idsTicket" Type="int" />
+          <Property Name="dtmResolved" Type="datetime" Nullable="false" />
+          <Property Name="txtUserName" Type="varchar" MaxLength="50" />
+          <Property Name="blnResolved" Type="bit" Nullable="false" />
+          <Property Name="txtResolution" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblOpenTicket">
+          <Key>
+            <PropertyRef Name="idsTicket" />
+          </Key>
+          <Property Name="idsTicket" Type="int" Nullable="false" />
+          <Property Name="txtUserName" Type="varchar" MaxLength="50" />
+          <Property Name="dtmCreated" Type="datetime" Nullable="false" />
+          <Property Name="dtmResolved" Type="datetime" />
+          <Property Name="blnResolved" Type="bit" Nullable="false" />
+          <Property Name="txtIssue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="idsUser" />
+          </Key>
+          <Property Name="idsUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="txtUserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="txtPassword" Type="varchar(max)" />
+          <Property Name="txtSalt" Type="varchar(max)" />
+          <Property Name="dtmCreate" Type="datetime" Nullable="false" />
+          <Property Name="blnAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblClosedTicket_tblOpenTicket">
+          <End Role="tblOpenTicket" Type="Self.tblOpenTicket" Multiplicity="0..1" />
+          <End Role="tblClosedTicket" Type="Self.tblClosedTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOpenTicket">
+              <PropertyRef Name="idsTicket" />
+            </Principal>
+            <Dependent Role="tblClosedTicket">
+              <PropertyRef Name="idsTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ticketTrackerModelStoreContainer">
+          <EntitySet Name="tblClosedTicket" EntityType="Self.tblClosedTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOpenTicket" EntityType="Self.tblOpenTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblClosedTicket_tblOpenTicket" Association="Self.FK_tblClosedTicket_tblOpenTicket">
+            <End Role="tblOpenTicket" EntitySet="tblOpenTicket" />
+            <End Role="tblClosedTicket" EntitySet="tblClosedTicket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ticketTrackerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblClosedTicket">
+          <Key>
+            <PropertyRef Name="idsClosedTicket" />
+          </Key>
+          <Property Name="idsClosedTicket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idsTicket" Type="Int32" />
+          <Property Name="dtmResolved" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="txtUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="blnResolved" Type="Boolean" Nullable="false" />
+          <Property Name="txtResolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblOpenTicket" Relationship="ticketTrackerModel.FK_tblClosedTicket_tblOpenTicket" FromRole="tblClosedTicket" ToRole="tblOpenTicket" />
+        </EntityType>
+        <EntityType Name="tblOpenTicket">
+          <Key>
+            <PropertyRef Name="idsTicket" />
+          </Key>
+          <Property Name="idsTicket" Type="Int32" Nullable="false" />
+          <Property Name="txtUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dtmCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dtmResolved" Type="DateTime" Precision="3" />
+          <Property Name="blnResolved" Type="Boolean" Nullable="false" />
+          <Property Name="txtIssue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblClosedTickets" Relationship="ticketTrackerModel.FK_tblClosedTicket_tblOpenTicket" FromRole="tblOpenTicket" ToRole="tblClosedTicket" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="idsUser" />
+          </Key>
+          <Property Name="idsUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="txtUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="txtPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="txtSalt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dtmCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="blnAdmin" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ticketTrackerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblClosedTickets" EntityType="Self.tblClosedTicket" />
+          <EntitySet Name="tblOpenTickets" EntityType="Self.tblOpenTicket" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <AssociationSet Name="FK_tblClosedTicket_tblOpenTicket" Association="ticketTrackerModel.FK_tblClosedTicket_tblOpenTicket">
+            <End Role="tblOpenTicket" EntitySet="tblOpenTickets" />
+            <End Role="tblClosedTicket" EntitySet="tblClosedTickets" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_tblClosedTicket_tblOpenTicket">
+          <End Type="ticketTrackerModel.tblOpenTicket" Role="tblOpenTicket" Multiplicity="0..1" />
+          <End Type="ticketTrackerModel.tblClosedTicket" Role="tblClosedTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOpenTicket">
+              <PropertyRef Name="idsTicket" />
+            </Principal>
+            <Dependent Role="tblClosedTicket">
+              <PropertyRef Name="idsTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ticketTrackerModelStoreContainer" CdmEntityContainer="ticketTrackerEntities">
+          <EntitySetMapping Name="tblClosedTickets">
+            <EntityTypeMapping TypeName="ticketTrackerModel.tblClosedTicket">
+              <MappingFragment StoreEntitySet="tblClosedTicket">
+                <ScalarProperty Name="idsClosedTicket" ColumnName="idsClosedTicket" />
+                <ScalarProperty Name="idsTicket" ColumnName="idsTicket" />
+                <ScalarProperty Name="dtmResolved" ColumnName="dtmResolved" />
+                <ScalarProperty Name="txtUserName" ColumnName="txtUserName" />
+                <ScalarProperty Name="blnResolved" ColumnName="blnResolved" />
+                <ScalarProperty Name="txtResolution" ColumnName="txtResolution" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOpenTickets">
+            <EntityTypeMapping TypeName="ticketTrackerModel.tblOpenTicket">
+              <MappingFragment StoreEntitySet="tblOpenTicket">
+                <ScalarProperty Name="idsTicket" ColumnName="idsTicket" />
+                <ScalarProperty Name="txtUserName" ColumnName="txtUserName" />
+                <ScalarProperty Name="dtmCreated" ColumnName="dtmCreated" />
+                <ScalarProperty Name="dtmResolved" ColumnName="dtmResolved" />
+                <ScalarProperty Name="blnResolved" ColumnName="blnResolved" />
+                <ScalarProperty Name="txtIssue" ColumnName="txtIssue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="ticketTrackerModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="idsUser" ColumnName="idsUser" />
+                <ScalarProperty Name="txtUserName" ColumnName="txtUserName" />
+                <ScalarProperty Name="txtPassword" ColumnName="txtPassword" />
+                <ScalarProperty Name="txtSalt" ColumnName="txtSalt" />
+                <ScalarProperty Name="dtmCreate" ColumnName="dtmCreate" />
+                <ScalarProperty Name="blnAdmin" ColumnName="blnAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ticketTracker.Models.tblUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.txtUserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txtPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txtSalt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtmCreate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.blnAdmin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.txtUserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.txtPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.txtSalt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtmCreate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.blnAdmin)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idsUser }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idsUser }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idsUser })
+        </td>
+    </tr>
+}
+
+</table>
+
+<hr />
+<div>@Html.DropDownList("MyDropDown", new SelectList(new[] { "First Value", "Second Value", "Third Value" }))</div>
+<br />
+<br />
+<div>@Html.DropDownList("MyDropDown", (SelectList) ViewBag.DropDownValues)</div>
+@*<div>@Html.DropDownList("DropdownList", ViewBag.DropdownList as SelectList, "Select User Name")</div>*@

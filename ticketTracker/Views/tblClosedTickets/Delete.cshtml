@@ -1,0 +1,64 @@
+﻿@model ticketTracker.Models.tblClosedTicket
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tblClosedTicket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dtmResolved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtmResolved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txtUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtUserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.blnResolved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blnResolved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txtResolution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtResolution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblOpenTicket.txtUserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblOpenTicket.txtUserName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

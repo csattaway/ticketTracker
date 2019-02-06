@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ticketTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblClosedTicket">
+    <Key>
+      <PropertyRef Name="idsClosedTicket" />
+    </Key>
+    <Property Name="idsClosedTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idsTicket" Type="int" />
+    <Property Name="dtmResolved" Type="datetime" Nullable="false" />
+    <Property Name="txtUserName" Type="varchar" MaxLength="50" />
+    <Property Name="blnResolved" Type="bit" Nullable="false" />
+    <Property Name="txtResolution" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblOpenTicket">
+    <Key>
+      <PropertyRef Name="idsTicket" />
+    </Key>
+    <Property Name="idsTicket" Type="int" Nullable="false" />
+    <Property Name="txtUserName" Type="varchar" MaxLength="50" />
+    <Property Name="dtmCreated" Type="datetime" Nullable="false" />
+    <Property Name="dtmResolved" Type="datetime" />
+    <Property Name="blnResolved" Type="bit" Nullable="false" />
+    <Property Name="txtIssue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="idsUser" />
+    </Key>
+    <Property Name="idsUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="txtUserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="txtPassword" Type="varchar(max)" />
+    <Property Name="txtSalt" Type="varchar(max)" />
+    <Property Name="dtmCreate" Type="datetime" Nullable="false" />
+    <Property Name="blnAdmin" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tblClosedTicket_tblOpenTicket">
+    <End Role="tblOpenTicket" Type="Self.tblOpenTicket" Multiplicity="0..1" />
+    <End Role="tblClosedTicket" Type="Self.tblClosedTicket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOpenTicket">
+        <PropertyRef Name="idsTicket" />
+      </Principal>
+      <Dependent Role="tblClosedTicket">
+        <PropertyRef Name="idsTicket" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ticketTrackerModelStoreContainer">
+    <EntitySet Name="tblClosedTicket" EntityType="Self.tblClosedTicket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblOpenTicket" EntityType="Self.tblOpenTicket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblClosedTicket_tblOpenTicket" Association="Self.FK_tblClosedTicket_tblOpenTicket">
+      <End Role="tblOpenTicket" EntitySet="tblOpenTicket" />
+      <End Role="tblClosedTicket" EntitySet="tblClosedTicket" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

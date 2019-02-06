@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ticketTracker.Models.tblClosedTicket>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Closed Tickets</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @style = "text-decoration: none;color: orange" })
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            User Name
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.blnResolved)
+        </th>*@
+        <th>
+            Resolution
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.tblOpenTicket.txtUserName)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.dtmResolved)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtmResolved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.txtUserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.blnResolved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.txtResolution)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblOpenTicket.txtUserName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idsClosedTicket }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idsClosedTicket }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idsClosedTicket })
+        </td>
+    </tr>
+}
+
+</table>

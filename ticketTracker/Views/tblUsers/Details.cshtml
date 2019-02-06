@@ -1,0 +1,58 @@
+﻿@model ticketTracker.Models.tblUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.txtUserName)
+        </dt>
+
+        <dd>
+            User Name
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txtPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txtSalt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtSalt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtmCreate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtmCreate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.blnAdmin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blnAdmin)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idsUser }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,64 @@
+﻿@model ticketTracker.Models.tblOpenTicket
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this ticket?</h3>
+<div>
+    @*<h4>tblOpenTicket</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Created by
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtUserName)
+        </dd>
+
+        <dt>
+            Opened
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtmCreated)
+        </dd>
+
+        <dt>
+            Resolved
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtmResolved)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.blnResolved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.blnResolved)
+        </dd>*@
+
+        <dt>
+            Issue
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txtIssue)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Open Tickets", "Index")
+        </div>
+    }
+</div>
