@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "testView";
+    List<SelectListItem> l1 = new List<SelectListItem>();
+    l1.Add(new SelectListItem() { Text = "Apple", Value = "20" });
+    l1.Add(new SelectListItem() { Text = "Mango", Value = "30" });
+    l1.Add(new SelectListItem() { Text = "Grapes", Value = "40" });
+    l1.Add(new SelectListItem() { Text = "Orange", Value = "50" });
+}
+
+<h2>testView</h2>
+
+
+@Html.DropDownList("FruitList", l1, "select any fruit")
+
+<br />
+<br />
+
+@Html.DropDownList("")

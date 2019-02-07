@@ -1,0 +1,17 @@
+﻿@model ticketTracker.Models.tblOpenTicket
+@{
+    ViewBag.Title = "testView2";
+    List<SelectListItem> l1 = new List<SelectListItem>();
+    l1.Add(new SelectListItem() { Text = "Apple", Value = "20" });
+    l1.Add(new SelectListItem() { Text = "Mango", Value = "30" });
+    l1.Add(new SelectListItem() { Text = "Grapes", Value = "40" });
+    l1.Add(new SelectListItem() { Text = "Orange", Value = "50" });
+    l1.Add(new SelectListItem() { Text = Model.txtUserName, Value = "7" });
+}
+
+<h2>testView2</h2>
+
+Hello WOrld
+
+<hr />
+@Html.DropDownList("FruitList", l1, "select any fruit")

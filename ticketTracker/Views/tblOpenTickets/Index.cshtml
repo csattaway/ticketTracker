@@ -46,11 +46,21 @@
         <td>
             @Html.DisplayFor(modelItem => item.txtIssue)
         </td>
+        @*@if (7 == 7)
+        {*@
+        <td hidden>
+            @Html.ActionLink("Edit", "Edit", new { id = item.idsTicket }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idsTicket }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idsTicket })
+        </td>}
+        @*else
+        {*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idsTicket }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idsTicket }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idsTicket })
-        </td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.idsTicket }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idsTicket }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idsTicket })
+        </td>}
+
     </tr>
 }
 
@@ -70,3 +80,4 @@
     </option>
 }
 </select>
+

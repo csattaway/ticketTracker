@@ -16,7 +16,6 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.idsTicket)
-
         <div class="form-group">
             @*@Html.LabelFor(model => model.txtUserName, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="control-label col-md-2">User Name</div>
@@ -26,13 +25,13 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.dtmCreated, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.dtmCreated, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.dtmCreated, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.dtmResolved, htmlAttributes: new { @class = "control-label col-md-2" })

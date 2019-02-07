@@ -29,6 +29,7 @@ namespace ticketTracker.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tblOpenTicket tblOpenTicket = db.tblOpenTickets.Find(id);
+            //if (tblOpenTicket.idsTicket.ToString() == null)
             if (tblOpenTicket == null)
             {
                 return HttpNotFound();
@@ -79,7 +80,8 @@ namespace ticketTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idsTicket,txtUserName,dtmCreated,dtmResolved,blnResolved,txtIssue")] tblOpenTicket tblOpenTicket)
+        //for some reason, this is still binding txtIssue, even though it is not in the "inclue =" parameter below. . . figure this out!
+        public ActionResult Edit([Bind(Include = "idsTicket,txtUserName,dtmCreated,blnResolved")] tblOpenTicket tblOpenTicket)
         {
             if (ModelState.IsValid)
             {
@@ -89,6 +91,16 @@ namespace ticketTracker.Controllers
             }
             return View(tblOpenTicket);
         }
+        //public ActionResult Edit([Bind(Include = "idsTicket,txtUserName,dtmCreated,dtmResolved,blnResolved,txtIssue")] tblOpenTicket tblOpenTicket)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(tblOpenTicket).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(tblOpenTicket);
+        //}
 
         // GET: tblOpenTickets/Delete/5
         public ActionResult Delete(int? id)
@@ -124,5 +136,15 @@ namespace ticketTracker.Controllers
             }
             base.Dispose(disposing);
         }
+        //public ActionResult Edit(int? id)
+        //{
+        //    tblOpenTicket tblOpenTicket = db.tblOpenTickets.Find(id);
+        //    if (tblOpenTicket.txtUserName.ToString() == "csattaway")
+        //    {
+        //        db.Entry(tblOpenTicket.txtUserName) = "csattaways";
+        //    }
+        //    return View();
+        //}
     }
+
 }

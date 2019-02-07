@@ -1,8 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using ticketTracker.Models;
+using System;
+
 
 namespace ticketTracker.Models
 {
+    
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -48,6 +53,12 @@ namespace ticketTracker.Models
 
     public class LoginViewModel
     {
+        private tblOpenTicket objectTblOpenTicket = new tblOpenTicket();
+
+        [Required]
+        [Display(Name = "User Name")]
+        public string txtUserName { get; set; }
+
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
@@ -60,6 +71,8 @@ namespace ticketTracker.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+
     }
 
     public class RegisterViewModel
@@ -68,6 +81,10 @@ namespace ticketTracker.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "User Name")]
+        public string txtUserName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

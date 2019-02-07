@@ -207,10 +207,12 @@
     <Compile Include="Controllers\tblClosedTicketsController.cs" />
     <Compile Include="Controllers\tblOpenTicketsController.cs" />
     <Compile Include="Controllers\tblUsersController.cs" />
+    <Compile Include="Controllers\testViewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Crypto.cs" />
     <Compile Include="Models\DropDownModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -333,6 +335,11 @@
     <Content Include="Views\tblOpenTickets\Details.cshtml" />
     <Content Include="Views\tblOpenTickets\Edit.cshtml" />
     <Content Include="Views\tblOpenTickets\Index.cshtml" />
+    <Content Include="Views\testViews\testView.cshtml" />
+    <Content Include="Views\testView\testView.cshtml" />
+    <Content Include="Views\testView\testView2.cshtml" />
+    <Content Include="Views\testView\testHide.cshtml" />
+    <Content Include="Views\testView\testNumerableView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
